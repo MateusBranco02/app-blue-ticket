@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Cadastro() {
     const [novoEvento, setNovoEvento] = useState({
@@ -13,9 +14,16 @@ export default function Cadastro() {
 
     const cadastrarEvento = async () => {
         const url = `http://localhost:3000/cadastro-evento`;
-        const response = await axios.post(url);
+        const response = await axios.post(url, novoEvento);
         console.log(response.data);
-        setNovoEvento(response.data);
+        setNovoEvento({
+            id: '',
+            nome: '',
+            local: '',
+            descricao: '',
+            preco: '',
+            foto: ''
+        });
     }
 
     return (
@@ -23,9 +31,9 @@ export default function Cadastro() {
             <h1>Cadastrar Evento</h1>
 
             <input
-                type="text"
+                type="number"
                 placeholder="id"
-                onChange={(event) => setNovoEvento({ ...novoEvento, id: event.target.value })}
+                onChange={(event) => setNovoEvento({ ...novoEvento, id: Number(event.target.value) })}
                 value={novoEvento.id}
             />
 
@@ -53,7 +61,7 @@ export default function Cadastro() {
             <input
                 type="text"
                 placeholder="preço"
-                onChange={(event) => setNovoEvento({ ...novoEvento, preco: event.target.value })}
+                onChange={(event) => setNovoEvento({ ...novoEvento, preco: Number(event.target.value) })}
                 value={novoEvento.preco}
             />
 
@@ -65,6 +73,10 @@ export default function Cadastro() {
             />
 
             <button onClick={cadastrarEvento}>Cadastrar</button>
+
+            <Link to={'/'}>
+                <p>Voltar</p>
+            </Link>
         </>
     );
 }

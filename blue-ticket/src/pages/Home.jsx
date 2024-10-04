@@ -12,9 +12,13 @@ export default function Home() {
 
   const buscarEventos = async () => {
     const url = `http://localhost:3000/`;
-    const response = await axios.get(url);
-    console.log(response.data);
-    setEventos(response.data)
+    try {
+      const response = await axios.get(url);
+      console.log(response.data);
+      setEventos(response.data)
+    } catch (error) {
+      console.error('Erro ao cadastrar evento:', error);
+    }
   }
 
   return (
