@@ -8,7 +8,7 @@ export default function Home() {
 
   useEffect(() => {
     buscarEventos();
-  });
+  }, []);
 
   const buscarEventos = async () => {
     const url = `http://localhost:3000/`;
@@ -24,13 +24,15 @@ export default function Home() {
         <button>Cadastrar Evento</button>
       </Link>
 
-
       <ul>
         {eventos.map((evento, key) =>
-          <li key={key}>
-            <p>Nome: {evento.nome}</p>
-            <img src={evento.foto} width={200} alt={evento.nome} />
-          </li>
+          <Link to={`/detalhes-evento/${evento.id}`} key={key}>
+            <li>
+              <p>Nome: {evento.nome}</p>
+              <img src={evento.foto} width={200} alt={evento.nome} />
+            </li>
+          </Link>
+
         )}
       </ul>
     </>
