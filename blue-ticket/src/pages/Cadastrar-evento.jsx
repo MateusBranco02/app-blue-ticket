@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import './Cadastrar-evento.css';
 
 export default function Cadastro() {
     const [novoEvento, setNovoEvento] = useState({
-        id: '',
+        id: Math.floor(Math.random() * 999999),
         nome: '',
         local: '',
         descricao: '',
@@ -16,67 +17,78 @@ export default function Cadastro() {
         const url = `http://localhost:3000/cadastro-evento`;
         const response = await axios.post(url, novoEvento);
         console.log(response.data);
-        setNovoEvento({
-            id: '',
-            nome: '',
-            local: '',
-            descricao: '',
-            preco: '',
-            foto: ''
-        });
     }
 
     return (
         <>
-            <h1>Cadastrar Evento</h1>
+            <div>
+                <header>
+                    <div className='container-elementos'>
+                        <h1 className='titulo'>Cadastrar Evento</h1>
+                        <Link to={'/'}>
+                            <button className='btn-voltar'>Voltar</button>
+                        </Link>
+                    </div>
+                </header>
 
-            <input
-                type="number"
-                placeholder="id"
-                onChange={(event) => setNovoEvento({ ...novoEvento, id: Number(event.target.value) })}
-                value={novoEvento.id}
-            />
+                <div className='container-form'>
+                    <form className='form-cadastro'>
+                        <ul className='ul-cadastro'>
+                            <li className='li-cadastro'>
+                                <input
+                                    type="text"
+                                    className='cadastro-input'
+                                    placeholder="Nome"
+                                    onChange={(nome) => setNovoEvento({ ...novoEvento, nome: nome.target.value })}
+                                    value={novoEvento.nome}
+                                />
+                            </li>
 
-            <input
-                type="text"
-                placeholder="Nome"
-                onChange={(event) => setNovoEvento({ ...novoEvento, nome: event.target.value })}
-                value={novoEvento.nome}
-            />
+                            <li className='li-cadastro'>
+                                <input
+                                    type="text"
+                                    className='cadastro-input'
+                                    placeholder="Local"
+                                    onChange={(local) => setNovoEvento({ ...novoEvento, local: local.target.value })}
+                                    value={novoEvento.local}
+                                />
+                            </li>
 
-            <input
-                type="text"
-                placeholder="Local"
-                onChange={(event) => setNovoEvento({ ...novoEvento, local: event.target.value })}
-                value={novoEvento.local}
-            />
+                            <li className='li-cadastro'>
+                                <input
+                                    type="text"
+                                    className='cadastro-input'
+                                    placeholder="descrição"
+                                    onChange={(descricao) => setNovoEvento({ ...novoEvento, descricao: descricao.target.value })}
+                                    value={novoEvento.descricao}
+                                />
+                            </li>
 
-            <input
-                type="text"
-                placeholder="descrição"
-                onChange={(event) => setNovoEvento({ ...novoEvento, descricao: event.target.value })}
-                value={novoEvento.descricao}
-            />
+                            <li className='li-cadastro'>
+                                <input
+                                    type="number"
+                                    className='cadastro-input'
+                                    placeholder="preço"
+                                    onChange={(preco) => setNovoEvento({ ...novoEvento, preco: Number(preco.target.value) })}
+                                    value={novoEvento.preco}
+                                />
+                            </li>
 
-            <input
-                type="text"
-                placeholder="preço"
-                onChange={(event) => setNovoEvento({ ...novoEvento, preco: Number(event.target.value) })}
-                value={novoEvento.preco}
-            />
+                            <li className='li-cadastro'>
+                                <input
+                                    type="text"
+                                    className='cadastro-input'
+                                    placeholder="url/foto"
+                                    onChange={(foto) => setNovoEvento({ ...novoEvento, foto: foto.target.value })}
+                                    value={novoEvento.foto}
+                                />
+                            </li>
+                        </ul>
 
-            <input
-                type="text"
-                placeholder="url/foto"
-                onChange={(event) => setNovoEvento({ ...novoEvento, foto: event.target.value })}
-                value={novoEvento.foto}
-            />
-
-            <button onClick={cadastrarEvento}>Cadastrar</button>
-
-            <Link to={'/'}>
-                <p>Voltar</p>
-            </Link>
+                        <button className='btn-cadastrar' onClick={cadastrarEvento}>Cadastrar</button>
+                    </form>
+                </div>
+            </div>
         </>
     );
 }

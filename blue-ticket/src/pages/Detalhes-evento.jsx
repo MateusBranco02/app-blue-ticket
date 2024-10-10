@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import './Detalhes-evento.css';
 
 export default function Detalhes() {
 
@@ -20,17 +21,22 @@ export default function Detalhes() {
 
     return (
         <>
-            <h1>Detalhes do Evento</h1>
+            <div className="container-detalhes">
+                <h1 className="header-detalhes">{evento?.nome}</h1>
 
-            <h2>{evento?.nome}</h2>
-            <img src={evento?.foto} width={200} alt={evento?.nome} />
-            <p>{evento?.descricao}</p>
-            <p>{evento?.local}</p>
-            <p>{evento?.preco}</p>
+                <div className="evento-container">
+                    <div className="evento-poster">
+                        <img src={evento?.foto} alt={evento?.nome} />
+                    </div>
 
-            <Link to={'/'}>
-                <p>Voltar</p>
-            </Link>
+                    <div className="evento-info">
+                        <p><strong>Descrição:</strong> {evento?.descricao}</p>
+                        <p><strong>Local:</strong> {evento?.local}</p>
+                        <p><strong>Preço:</strong> R${evento?.preco}</p>
+                        <Link to="/" className="voltar">Voltar</Link>
+                    </div>
+                </div>
+            </div>
         </>
     );
 }

@@ -3,3 +3,69 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+header {
+    width: 100%;
+    height: 80px;
+    background-color: black;
+}
+
+.container-elementos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 15px;
+}
+
+.titulo {
+    color: white;
+    font-size: 32px;
+    margin: auto;
+}
+
+.btn-cadastrar {
+    width: 180px;
+    height: 40px;
+    font-size: 18px;
+    color: black;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 19px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cadastrar:hover {
+    background-color: lightgray;
+    color: black;
+}
+
+.eventos-lista {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.eventos-lista a {
+    text-decoration: none;
+    color: black;
+}
+
+.evento-item {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+}
+
+.evento-imagem {
+    margin-left: 20px;
+    width: 200px;
+}
+
+.evento-info {
+    font-size: 20px;
+}
